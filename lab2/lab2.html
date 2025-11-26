@@ -1,0 +1,272 @@
+<!doctype html>
+<head>
+    <title>Lab2</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Введение</h1>
+    <p>
+    В процессе проектирования программного комплекса была сделана ставка на создание инструмента, который отличается
+    простотой использования, узкой специализацией и модульной архитектурой. Существующие программные решения для
+    моделирования аэродинамических течений, такие как «COMSOL Multiphysics», «ANSYS Fluent»,
+    «OpenFOAM» и другие, представляют собой мощные универсальные платформы, способные решать широкий спектр
+    задач. Однако такие системы зачастую требуют глубоких знаний в области численных методов и программирования, высоких
+    вычислительных мощностей и сложного процесса настройки, включающего десятки параметров, которые необходимо задавать вручную.
+    Проектируемое приложение отличается от существующих решений следующими ключевыми особенностями.
+    </p>
+    <ol>
+        <li>Возможность интеграции с разными вычислительными модулями, у которых отсутствует удобный пользовательский интерфейс.</li>
+        <li>Простота использования. Программный комплекс разрабатывается с учетом пользователей, которые не являются экспертами в программировании или численных методах. Интерфейс интуитивно понятен, а процесс ввода данных сведен к минимально необходимым параметрам.</li>
+        <li>Узкая специализация. Комплекс ориентирован исключительно на моделирование аэродинамических течений для ограниченного числа типовых задач (например, обтекание профиля крыла или трубы). Это позволяет сосредоточиться на предоставлении качественного функционала именно для данных сценариев, не перегружая систему лишними возможностями.</li>
+        <li>Модульная архитектура. Программа разделена на три независимых модуля (ввод данных, вычисления и визуализация), что позволяет легко обновлять или изменять отдельные части комплекса. Пользователь может использовать каждый модуль по отдельности или в рамках общего рабочего процесса.</li>
+    </ol>
+    <h1>Глава 1</h1>
+    <h2>Теоретические основы моделирования аэродинамических течений</h2>
+    <ol>
+        <li>
+            <h3>Основные понятия ламинарных и турбулентных течений</h3>
+            <p>Ламинарное течение является наиболее простым и понятным для человека. Ламинарное течение —
+                это течение жидкости или газа, при котором вещество перемещается «слоями», которые не перемешиваются
+                друг с другом и движутся параллельно основному потоку. Данный вид течения наблюдается либо в очень
+                вязких жидкостях, либо в очень медленных течениях, либо в очень узких трубках, таких как, например,
+                капилляры в теле человека <a href="#bib_lam_flow">[1]</a>.
+            </p>
+
+            <p>
+                Турбулентное течение является намного более сложным и труднообъяснимым явлением,
+                но оно встречается намного чаще в природе. Движение называют турбулентным, если его
+                характеристики (скорость, давление и т.д.) хаотично изменяются и пульсируют в пространстве и
+                во времени. На рисунке <a href="#fig_lam-vs-turb">1.1</a> схематично изображено отличие ламинарного и турбулентного
+                течения. Явление турбулентности до сих пор полностью не изучено, но известно, что одной из причин
+                появления турбулентности является неустойчивость течения.
+            </p>
+            <figure>
+                <img id="fig_lam-vs-turb" src="img.png" alt="Ламинарный и турбулентный потоки">
+                <figcaption>Рисунок 1.1 — Ламинарный (а) и турбулентный (б) потоки. В ламинарном
+                    потоке (а) слои жидкости или газа движутся без перемешивания и
+                    пульсаций. В турбулентном потоке (б) слои хаотично перемешиваются друг
+                    с другом</figcaption>
+            </figure>
+            <p>
+                Часто турбулентность определяют как совокупность разномасштабных вихрей.
+                Максимальный размер вихрей близок к характерному линейному масштабу задачи <span class="inline-equation">L</span>, например,
+                длине хорды профиля крыла или диаметру трубы. Минимальный размер вихрей характеризуется так
+                называемым колмогоровским масштабом <span class="inline-equation">&eta;<sub>k</sub> = <span class="equation_text__text">(</span>&nu;<sup>3</sup>/&epsilon;<span class="equation_text__text">)</span><sup>&frac14;</sup></span>,
+                где <span class="inline-equation">&epsilon;</span>&nbsp;—&nbsp;диссипация энергии, а <span class="inline-equation">&nu;</span>&nbsp;—&nbsp;кинематическая вязкость. Масштаб <span class="inline-equation">&eta;<sub>k</sub></span>
+                характеризует линейные размеры структур, на которые вязкость еще оказывает существенное влияние.
+                Такие вихри рассеиваются в тепло. Основная часть энергии переносится с помощью вихрей среднего размера.
+            </p>
+            <p>
+                Турбулентным течениям присущи признаки <a href="#bib_turb_reasons">[2]</a>:
+                <ul>
+                    <li>нерегулярность&nbsp;—&nbsp;течение нерегулярно, случайно и хаотично;</li>
+                    <li>диффузионность&nbsp;—&nbsp;в турбулентном течении диффузия выше чем в ламинарном;</li>
+                    <li>высокое число Рейнольдса;</li>
+                    <li>трехмерность&nbsp;—&nbsp;турбулентность всегда трехмерная;</li>
+                    <li>диссипативность&nbsp;—&nbsp;энергия наиболее мелких вихрей рассеивается в тепло.</li>
+                </ul>
+            </p>
+        </li>
+        <li>
+            <h3>Число Рейнольдса как характеристика отношения инерционных и вязких сил</h3>
+            <p>
+                Число Рейнольдса (<span class="inline-equation">Re</span>)&nbsp;—&nbsp;безразмерная величина, которая является
+                соотношением сил инерции, дестабилизирующих течение, и сил вязкости, стабилизирующих течение.
+                Вычисляется по формуле
+                <div class="equation" id="eq_re-number">
+                    <div class="equation_text">
+                        Re = <span class="equation_text__text">(</span>v &middot; d<span class="equation_text__text">)</span>/&nu; = <span class="equation_text__text">(</span>&rho; &middot; v &middot; d<span class="equation_text__text">)</span>/&mu;,
+                    </div>
+                    <div class="equation_number">(1.1)</div>
+                </div>
+                где <span class="inline-equation">v</span>&nbsp;—&nbsp;скорость потока, <span class="inline-equation">d</span>&nbsp;—&nbsp;характерный размер
+                (например, диаметр трубы или длина хорды крыла), <span class="inline-equation">&mu;</span>&nbsp;—&nbsp;динамическая
+                вязкость среды, <span class="inline-equation">&nu; = &mu;/&rho;</span>&nbsp;—&nbsp;кинематическая вязкость среды.
+            </p>
+            <p>
+                Число Рейнольдса характеризует режим течения жидкостей и газов. При малых числах Рейнольдса большее
+                влияние на поток оказывают вязкостные силы, а при больших&nbsp;—&nbsp;инерционные.
+                Существует, так называемое, критическое значение <span class="inline-equation">Re<sub>cr</sub></span>, при превышении которого
+                ламинарный поток теряет свою устойчивость и становится турбулентным. Критическое число Рейнольдса
+                устанавливается опытным путем для различных течений. Например, при течении в круглых трубах критическое
+                значение <span class="inline-equation">Re<sub>cr</sub> &approx; 2300</span>, а при обтекании профилей крыльев <span class="inline-equation">Re<sub>cr</sub> &sim; 10<sup>6</sup></span> <a href="#bib_re_crit">[3]</a>.
+                Если <span class="inline-equation">Re</span> меньше значения <span class="inline-equation">Re<sub>cr</sub></span>, то сопротивление крыла велико, а подъемная сила мала; если выше,
+                то сопротивление в несколько раз падает, а подъемная сила в несколько раз
+                возрастает <a href="#bib_re_crit_gadetskiy">[4]</a>.
+            </p>
+        </li>
+        <li>
+            <h3>Основные законы аэродинамики и их применение</h3>
+            <ol>
+                <li>
+                    <h4>Закон сохранения массы&nbsp;—&nbsp;уравнение неразрывности</h4>
+                    <p>
+                        Уравнение неразрывности является математическим описанием закона сохранения массы для
+                        потока идеального сжимаемого газа. Рассмотрим элементарную струйку воздуха. Поскольку
+                        поверхность трубки тока непроницаема для частиц воздуха, то при установившемся
+                        течении через каждое поперечное сечение элементарной струйки в единицу времени будет
+                        протекать одна и та же масса воздуха. За одну секунду через сечение струйки <span class="inline-equation">F<sub>1</sub></span> пройдет
+                        воздух объемом <span class="inline-equation">m<sub>1</sub> = &rho;<sub>1</sub> &middot; v<sub>1</sub> &middot; F<sub>1</sub></span>, где <span class="inline-equation">&rho;</span>&nbsp;—&nbsp;плотность воздуха, <span class="inline-equation">F<sub>1</sub></span>&nbsp;—&nbsp;площадь
+                        поперечного сечения трубки на входе, <span class="inline-equation">v<sub>1</sub></span>&nbsp;—&nbsp;скорость потока газа на входе в сечение.
+                        Если принять, что трубка тока не имеет разрывов, через которые может поступать или уходить
+                        воздух, то через сечение струйки <span class="inline-equation">F<sub>2</sub></span> за секунду должна выйти масса
+                        воздуха <span class="inline-equation">m<sub>2</sub> = &rho;<sub>2</sub> &middot; v<sub>2</sub> &middot; F<sub>2</sub></span>, равная массе <span class="inline-equation">m<sub>1</sub></span>, вошедшей в
+                        трубку <a href="#bib_uravnenie-nerazryvnosti">[5]</a>. Таким образом, секундный массовый перенос
+                        воздуха или другого газа через любое сечение струи есть величина постоянная,
+                        рассчитываемая по формуле:
+                        <div class="equation" id="eq_uravnenie-nerazryvnosti">
+                            <div class="equation_text">
+                                &rho; &middot; v &middot; F = <span class="equation_text__text">const</span>.
+                            </div>
+                            <div class="equation_number">(1.2)</div>
+                        </div>
+                    </p>
+                    <p>
+                        Уравнение <a href="#eq_uravnenie-nerazryvnosti">(1.2)</a> называется уравнением неразрывности. При маленьких
+                        скоростях (<span class="inline-equation">M < 0.3</span>) воздух почти не сжимается, поэтому
+                        плотность воздуха <span class="inline-equation">&rho;</span> можно считать постоянной. В этом
+                        случае уравнение <a href="#eq_uravnenie-nerazryvnosti">(1.2)</a> примет следующий вид:
+                        <div class="equation" id="eq_uravnenie-nerazryvnosti-2">
+                            <div class="equation_text">
+                                v &middot; F = <span class="equation_text__text">const</span>.
+                            </div>
+                            <div class="equation_number">(1.3)</div>
+                        </div>
+                    </p>
+                    <p>
+                        Из уравнения <a href="#eq_uravnenie-nerazryvnosti-2">(1.3)</a> можно сделать вывод, что при уменьшении
+                        площади поперечного сечения струйки скорость течения воздуха в ней возрастает, а при
+                        увеличении&nbsp;—&nbsp;падает. Но это справедливо только для скоростей течения, меньших
+                        скорости звука (<span class="inline-equation">M < 1</span>). При
+                        <span class="inline-equation">M > 1</span> все происходит наоборот, так как важную роль играет
+                        сжимаемость воздуха. При уменьшении площади поперечного сечения плотность воздуха увеличивается
+                        настолько, что множитель <span class="inline-equation">&rho; &middot; F</span> уравнения
+                        <a href="#eq_uravnenie-nerazryvnosti">(1.2)</a> тоже увеличивается, что приводит к уменьшению скорости
+                        потока <span class="inline-equation">v</span>. Поэтому для сверхзвуковых потоков для увеличения
+                        скорости <span class="inline-equation">v</span> необходимо увеличивать площадь сечения
+                        <span class="inline-equation">F</span>.
+                    </p>
+                </li>
+                <li>
+                    <h4>Закон сохранения энергии&nbsp;—&nbsp;уравнение Бернулли</h4>
+                    <p>
+                        Важное место в аэродинамике занимает закон Бернулли, который связывает давление и скорость воздуха в струе.
+                    </p>
+                    <p>
+                        Уравнение Бернулли является математическим описанием закона сохранения энергии для струйки идеального несжимаемого газа. Закон сохранения энергии описывается формулой
+                        <div class="equation" id="eq_eq-bernulli">
+                            <div class="equation_text">
+                                E<sub>1</sub> + E<sub>2</sub> + ... = <span class="equation_text__text">const</span>.
+                            </div>
+                            <div class="equation_number">(1.4)</div>
+                        </div>
+                    </p>
+                    <p>
+                        Учитывая только кинетическую энергию и энергию силы давления в струе, уравнение <a href="#eq_eq-bernulli">(1.4)</a> можно записать в виде
+                        <div class="equation" id="eq_eq-bernulli-2">
+                            <div class="equation_text">
+                                E = E<sub>k</sub> + E<sub>p</sub>,
+                            </div>
+                            <div class="equation_number">(1.5)</div>
+                        </div>
+                        где <span class="inline-equation">E</span>&nbsp;—&nbsp;полная энергия в сечении струи,
+                        <span class="inline-equation">E<sub>k</sub></span>&nbsp;—&nbsp;кинетическая энергия
+                        движущегося газа, <span class="inline-equation">E<sub>p</sub></span>&nbsp;—&nbsp;энергия
+                        силы давления газа.
+                    </p>
+                    <p>
+                        Кинетическая энергия характеризует способность движущегося газа производить работу и рассчитывается по формуле
+                        <div class="equation" id="eq_E_k">
+                            <div class="equation_text">
+                                E<sub>k</sub> = <span class="equation_text__text">(</span>m &middot; v<sup>2</sup><span class="equation_text__text">)</span>/<span class="equation_text__text">2</span>.
+                            </div>
+                            <div class="equation_number">(1.6)</div>
+                        </div>
+                    </p>
+                    <table>
+                        <caption>Таблица 1.1 — Пример файла с результатами вычислений, полученного из вычислительного модуля</caption>
+                        <tr>
+                            <th>x</th>
+                            <th>y</th>
+                            <th>U (скорость)</th>
+                            <th>u (пр. U на ось х)</th>
+                            <th>v (пр. U на ось у)</th>
+                            <th>p (давление)</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>50</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>49</td>
+                            <td>11</td>
+                            <td>15</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>51</td>
+                            <td>12</td>
+                            <td>10</td>
+                            <td>13</td>
+                        </tr>
+                    </table>
+                </li>
+            </ol>
+        </li>
+    </ol>
+    <h1>Список литературы</h1>
+    <ol class="bibliography">
+        <li id="bib_lam_flow">
+            Лойцянский Л. Г. Механика жидкости и газа — 7-е изд. — Москва : Дрофа, 2003. — 840 с.
+        </li>
+        <li id="bib_turb_reasons">
+            Shahzad A., Hamdani H., Mumtaz M. Effect of Reynolds number on leading
+            edge vortex for a wing in unsteady motion // Proceedings of 2013 10th
+            International Bhurban Conference on Applied Sciences & Technology (IB-CAST). — 2013. — P. 181–188.
+        </li>
+        <li id="bib_re_crit">
+            Shams T. A., Ali Shah S. I., Ahmad M. A. Study of Low Reynolds Number
+            Aerodynamics for Low Aspect Ratio MAV Wing // 2018 IEEE 21st
+            International Multi-Topic Conference (INMIC). — 2018. — P. 1–8.
+        </li>
+        <li id="bib_re_crit_gadetskiy">
+            Гадецкий В. М. Экспериментальное исследование влияния числа Рейнольдса
+            на обтекание стреловидного крыла при околозвуковых скоростях
+            // Ученые записки ЦАГИ. — 1988. — Т. 19, № 1. — С. 45–51.
+        </li>
+        <li id="bib_uravnenie-nerazryvnosti">
+            Толпаев В. А., Палиев В. В. Уравнение неразрывности в двумерных моделях
+            фильтрации жидкости и газа в искривленных пластах конечной
+            толщины // Известия Саратовского университета. Новая серия. Серия
+            Математика. Механика. Информатика. — 2007. — Т. 7, № 2. — С. 49–53.
+        </li>
+        <li id="bib_pres">
+            Gregory N., O’Reilly C. L. Low-speed aerodynamic characteristics
+            of NACA 0012 aerofoil section, including the effects of upper-surface
+            roughness simulating hoar frost. — London : R. & M. No. 3726, 1973. — 35 p.
+        </li>
+        <li id="bib_ladson_cl">
+            Ladson C. L. Effects of Independent Variation of Mach and Reynolds Numbers on
+            the Low-Speed Aerodynamic Characteristics of the NACA 0012
+            Airfoil Section. — Hampton, Virginia : NASA TM 4074, 1988. — 97 p.
+        </li>
+        <li id="bib_aero">
+            Аэродинамика. — URL: <a href="https://www.krugosvet.ru/enc/nauka_i_tehnika/fizika/AERODINAMIKA.html">
+            https://www.krugosvet.ru/enc/nauka_i_tehnika/fizika/AERODINAMIKA.html</a> (дата обр. 6 окт. 2023).
+        </li>
+        <li id="bib_bernuli_and_newton">
+            Bernoulli and Newton. — URL:
+            <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bernoulli-and-newton/">https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bernoulli-and-newton/</a>
+            (visited on Oct. 6, 2023).
+        </li>
+    </ol>
+</body>

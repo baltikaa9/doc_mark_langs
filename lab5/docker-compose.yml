@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  mediawiki:
+    image: mediawiki:latest
+    container_name: mediawiki
+    ports:
+      - "8080:80"
+    volumes:
+      - ./images:/var/www/html/images
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+    depends_on:
+      - database
+    restart: always
+    user: "33:33"
+
+  database:
+    image: mariadb:latest
+    container_name: mediawiki_db
+    environment:
+      MYSQL_ROOT_PASSWORD: zxc
+      MYSQL_DATABASE: mediawiki
+      MYSQL_USER: wikiuser
+      MYSQL_PASSWORD: zxc
+    volumes:
+      - ./db:/var/lib/mysql
+    restart: always

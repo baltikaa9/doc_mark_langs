@@ -1,0 +1,66 @@
+body {
+    /*font-family:*/
+    /*Times New Roman,*/
+    /*serif;*/
+    font-size: 20px;
+}
+
+p {
+    text-indent: 25px;
+    text-align: justify;
+}
+
+.inline-equation {
+    font-style: italic;
+}
+
+.equation {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+}
+
+.equation_text {
+    font-style: italic;
+    grid-column: 2;
+    justify-self: center;
+}
+
+.equation_number {
+    grid-column: 3;
+    justify-self: end;
+}
+
+.equation_text__text {
+    font-style: normal;
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+figcaption {
+    text-align: justify;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    text-align: center;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: "— ";
+}

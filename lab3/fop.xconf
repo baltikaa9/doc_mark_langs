@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fop version="1.0">
+  <renderers>
+    <renderer mime="application/pdf">
+      <fonts>
+        <!-- Автоматически подключить все системные шрифты -->
+        <auto-detect/>
+        <!-- ИЛИ явно указать путь к шрифтам: -->
+        <!--
+        <font metrics-url="dejavu-sans.xml" kerning="yes" embed-url="/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf">
+          <font-triplet name="DejaVu Sans" style="normal" weight="normal"/>
+        </font>
+        -->
+      </fonts>
+    </renderer>
+  </renderers>
+</fop>

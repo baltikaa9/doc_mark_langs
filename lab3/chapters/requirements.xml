@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<chapter xmlns="http://docbook.org/ns/docbook">
+    <title>Системные требования</title>
+    <itemizedlist>
+        <listitem><para
+            >Операционная система: Windows, Linux или macOS</para></listitem>
+        <listitem><para>Python 3.13 или выше</para></listitem>
+        <listitem><para
+            >Зависимости: PySide6, Matplotlib, Pandas, Gmsh</para></listitem>
+        <listitem><para
+            >Вычислительный модуль (например, COMSOL Multiphysics) для выполнения расчётов</para></listitem>
+    </itemizedlist>
+</chapter>

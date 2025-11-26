@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<chapter xmlns="http://docbook.org/ns/docbook">
+<title>Описание интерфейса</title>
+<para>Программный комплекс состоит из двух основных приложений:</para>
+<itemizedlist>
+    <listitem>
+        <para>
+            <emphasis>Модуль ввода данных</emphasis> — содержит (см. <xref
+                    linkend="fig"
+                />):
+            <itemizedlist>
+                <listitem><para
+                        >Дерево проекта (настройки материала, модель турбулентности, начальные и граничные условия)</para></listitem>
+                <listitem><para
+                        >Рабочую зону для создания геометрии (примитивы, булевы операции)</para></listitem>
+                <listitem><para
+                        >Панель инструментов (построение сетки, экспорт конфигурации)</para></listitem>
+            </itemizedlist>
+        </para>
+        <figure id="fig">
+          <title>Главное окно модуля ввода данных</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../fig/gui.png" format="PNG" align="center" />
+            </imageobject>
+            <imageobject role="html">
+              <imagedata fileref="fig/gui.png" format="PNG" align="center" />
+            </imageobject>
+            <textobject>
+              <phrase>Главное окно модуля ввода данных</phrase>
+            </textobject>
+          </mediaobject>
+        </figure>
+    </listitem>
+    <listitem><para><emphasis>Модуль визуализации</emphasis> — содержит:
+    <itemizedlist>
+        <listitem><para
+                        >Панель настроек (выбор файла с результатами, тип графика, параметры отображения)</para></listitem>
+        <listitem><para
+                        >Область вывода графика (контурные карты, линии тока, одномерные зависимости)</para></listitem>
+    </itemizedlist>
+    </para></listitem>
+</itemizedlist>
+</chapter>

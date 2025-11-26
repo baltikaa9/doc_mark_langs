@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="ru">
+  <info>
+    <title>Руководство разработчика: Программа для анализа структуры галактик</title>
+    <author>
+      <personname>Яваев Р.Р.</personname>
+    </author>
+    <releaseinfo>Версия 1.0</releaseinfo>
+  </info>
+
+  <chapter>
+    <title>Обзор архитектуры</title>
+    <para>Программа реализована на Python с использованием модульной архитектуры и шаблонов проектирования. Основные компоненты: UI (PyQt5), модели CNN (TensorFlow/Keras), экспорт данных, утилиты и логирование.</para>
+    <para>Модели CNN реализованы как Singleton для оптимизации памяти и предотвращения повторной загрузки.</para>
+  </chapter>
+
+  <chapter>
+    <title>Структура компонентов</title>
+    <itemizedlist>
+      <listitem><para><emphasis>Пользовательский интерфейс</emphasis> — PyQt5, обработка событий, потоки (QThread).</para></listitem>
+      <listitem><para><emphasis>Модели машинного обучения</emphasis> — три CNN на основе MobileNet:
+        <itemizedlist>
+          <listitem>GalaxyMorphologicalModel — морфологическая классификация (3 класса)</listitem>
+          <listitem>SpiralArmsQuantificationModel — количество рукавов</listitem>
+          <listitem>PitchAngleDeterminingModel — угол закрутки (регрессия)</listitem>
+        </itemizedlist>
+      </para></listitem>
+      <listitem><para><emphasis>Экспорт данных</emphasis> — CSV (pandas), XLS (xlwt)</para></listitem>
+      <listitem><para><emphasis>Утилиты</emphasis> — FileSystemHelper, ImageHelper, LoggerHelper</para></listitem>
+    </itemizedlist>
+  </chapter>
+
+  <chapter>
+    <title>Классовая структура</title>
+
+    <section>
+      <title>Базовые абстрактные классы</title>
+      <para>Все модели наследуются от <code>CNNModelBase</code>, реализующего:</para>
+      <itemizedlist>
+        <listitem><para><code>getInstance()</code> — Singleton</para></listitem>
+        <listitem><para><code>predictForData(data)</code></para></listitem>
+        <listitem><para><code>loadModel(path)</code>, <code>prepareData(data)</code>, <code>validateData(data)</code></para></listitem>
+        <listitem><para><code>getModelInfo()</code>, <code>logPrediction(...)</code></para></listitem>
+      </itemizedlist>
+      <para>Обработчики таблиц наследуются от <code>TableHandlerBase</code> с методами <code>saveTable()</code>, <code>loadTable()</code>, <code>addRow()</code> и др.</para>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Обучающие данные и модели</title>
+
+    <section>
+      <title>Наборы данных</title>
+      <itemizedlist>
+        <listitem>
+          <para><emphasis>Морфология</emphasis>: 30 000 изображений из Galaxy Zoo 2 (SDSS), 3 класса.</para>
+        </listitem>
+        <listitem>
+          <para><emphasis>Количество рукавов</emphasis>: 23 167 изображений (реальные + синтетические), аугментация поворотами.</para>
+        </listitem>
+        <listitem>
+          <para><emphasis>Угол закрутки</emphasis>: 7 509 синтетических изображений (PyOpenGL), grayscale 212×212.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Архитектура моделей</title>
+      <para>Все модели основаны на MobileNet с трансферным обучением. Выходной слой адаптирован под задачу:
+        <itemizedlist>
+          <listitem>Классификация — softmax (3 нейрона)</listitem>
+          <listitem>Регрессия угла — 1 нейрон без активации</listitem>
+        </itemizedlist>
+      </para>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Расширяемость</title>
+    <section>
+      <title>Добавление новой модели</title>
+      <orderedlist>
+        <listitem><para>Создайте класс, наследующий <code>CNNModelBase</code>.</para></listitem>
+        <listitem><para>Реализуйте все абстрактные методы.</para></listitem>
+        <listitem><para>Зарегистрируйте модель в основном контроллере UI.</para></listitem>
+      </orderedlist>
+    </section>
+    <section>
+      <title>Добавление формата экспорта</title>
+      <orderedlist>
+        <listitem><para>Создайте класс, наследующий <code>TableHandlerBase</code>.</para></listitem>
+        <listitem><para>Реализуйте <code>saveTable()</code> и <code>loadTable()</code>.</para></listitem>
+        <listitem><para>Добавьте кнопку в UI и привяжите обработчик.</para></listitem>
+      </orderedlist>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Потоки и логирование</title>
+    <para>Долгие операции (анализ папки, загрузка моделей) выполняются в <code>QThread</code> для предотвращения блокировки UI.</para>
+    <para>Ошибки записываются через <code>LoggerHelper</code> в файл <filename>error.log</filename>.</para>
+  </chapter>
+
+  <chapter>
+    <title>Структура проекта</title>
+    <programlisting>
+project/
+├── main.py
+├── requirements.txt
+├── models/
+│   ├── morph_model.h5
+│   ├── arms_model.h5
+│   └── pitch_model.h5
+├── utils/
+│   ├── FileSystemHelper.py
+│   ├── ImageHelper.py
+│   └── LoggerHelper.py
+└── ui/
+    └── main_window.py
+    </programlisting>
+  </chapter>
+</book>

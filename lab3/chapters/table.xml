@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<preface xmlns='http://docbook.org/ns/docbook'>
+<table id='table' align='center' frame='all'>
+  <title
+        >Пример файла с результатами вычислений, полученного из вычислительного модуля</title>
+  <tgroup cols='6' align='center' colsep='1' rowsep='1'>
+    <!-- <colspec colname='col1' /> -->
+    <!-- <colspec colname='col2' /> -->
+    <!-- <colspec colname='col3' /> -->
+    <thead>
+      <row>
+        <entry>x</entry>
+        <entry>y</entry>
+        <entry>U (скорость)</entry>
+        <entry>u (пр. U на ось х)</entry>
+        <entry>v (пр. U на ось у)</entry>
+        <entry>p (давление)</entry>
+      </row>
+    </thead>
+    <tbody>
+      <row>
+        <entry>0</entry>
+        <entry>0</entry>
+        <entry>50</entry>
+        <entry>10</entry>
+        <entry>15</entry>
+        <entry>15</entry>
+      </row>
+      <row>
+        <entry>0</entry>
+        <entry>1</entry>
+        <entry>49</entry>
+        <entry>11</entry>
+        <entry>15</entry>
+        <entry>14</entry>
+      </row>
+      <row>
+        <entry>0</entry>
+        <entry>1</entry>
+        <entry>49</entry>
+        <entry>11</entry>
+        <entry>15</entry>
+        <entry>14</entry>
+      </row>
+    </tbody>
+  </tgroup>
+</table>
+</preface>

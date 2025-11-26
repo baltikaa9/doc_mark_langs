@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+    <head>
+        <title>MathML Formula</title>
+        <script
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+            id="MathJax-script"
+            async
+        ></script>
+    </head>
+    <body>
+        <h1>Формулы</h1>
+        <h2>Вариационная постановка уравнения</h2>
+        <math display="block">
+            <mrow>
+                <munderover>
+                    <mo>&sum;</mo>
+                    <mrow>
+                        <mi>i</mi>
+                        <mo>=</mo>
+                        <mn>1</mn>
+                    </mrow>
+                    <mi>n</mi>
+                </munderover>
+                <munder>
+                    <mo>&int;</mo>
+                    <mi>&Omega;</mi>
+                </munder>
+                <mfenced>
+                    <mrow>
+                        <msub>
+                            <mi>&lambda;</mi>
+                            <mi>i</mi>
+                        </msub>
+                        <msub>
+                            <mrow>
+                                <mo>&nabla;</mo>
+                                <mi>u</mi>
+                            </mrow>
+                            <mi>i</mi>
+                        </msub>
+                        <mo>&middot;</mo>
+                        <mo>&nabla;</mo>
+                        <mi>v</mi>
+                        <mo>+</mo>
+                        <msub>
+                            <mi>f</mi>
+                            <mi>i</mi>
+                        </msub>
+                        <mi>v</mi>
+                    </mrow>
+                </mfenced>
+                <mi>d</mi>
+                <mi>&Omega;</mi>
+                <mo>=</mo>
+                <munder>
+                    <mo>&oint;</mo>
+                    <mrow>
+                        <mo>&part;</mo>
+                        <mi>&Omega;</mi>
+                    </mrow>
+                </munder>
+                <msub>
+                    <mi>g</mi>
+                    <mi>i</mi>
+                </msub>
+                <mi>v</mi>
+                <mi>d</mi>
+                <mi>S</mi>
+            </mrow>
+        </math>
+        <h3>Обозначения</h3>
+        <div>
+            <ul>
+                <li>
+                    <math><mi>u</mi></math> &mdash; искомая функция
+                </li>
+                <li>
+                    <math><mi>v</mi></math> &mdash; весовая или тестовая функция
+                </li>
+                <li>
+                    <math
+                        ><msub><mi>&lambda;</mi><mi>i</mi></msub></math
+                    >
+                    &mdash; i-й параметр (например, коэффициент диффузии)
+                </li>
+                <li>
+                    <math><mi>&Omega;</mi></math> &mdash; область интегрирования
+                </li>
+                <li>
+                    <math><mo>&part;</mo><mi>&Omega;</mi></math> &mdash; граница
+                    области
+                </li>
+                <li>
+                    <math><mi>g</mi></math> &mdash; граничное условие
+                </li>
+                <li>
+                    <math><mi>f</mi></math> &mdash; исходная функция (источник)
+                </li>
+            </ul>
+        </div>
+
+        <h2>Уравнения Навье-Стокса</h2>
+        <math display="block">
+            <mtable>
+                <mtr>
+                    <mtd>
+                        <mrow>
+                            <mi>&rho;</mi>
+                            <mfenced>
+                                <mrow>
+                                    <mfrac displaystyle="true">
+                                        <mrow>
+                                            <mo>&part;</mo>
+                                            <mi>u</mi>
+                                        </mrow>
+                                        <mrow>
+                                            <mo>&part;</mo>
+                                            <mi>t</mi>
+                                        </mrow>
+                                    </mfrac>
+                                    <mo>+</mo>
+                                    <mfenced>
+                                        <mrow>
+                                            <mover>
+                                                <mi>u</mi>
+                                                <mo>&rarr;</mo>
+                                            </mover>
+                                            <mo>&middot;</mo>
+                                            <mo>&nabla;</mo>
+                                            <mover>
+                                                <mi>u</mi>
+                                                <mo>&rarr;</mo>
+                                            </mover>
+                                        </mrow>
+                                    </mfenced>
+                                </mrow>
+                            </mfenced>
+                            <mo>-</mo>
+                            <mi>&mu;</mi>
+                            <mo>&Delta;</mo>
+                            <mover>
+                                <mi>u</mi>
+                                <mo>&rarr;</mo>
+                            </mover>
+                            <mo>+</mo>
+                            <mo>&nabla;</mo>
+                            <mi>p</mi>
+                            <mo>=</mo>
+                            <mover>
+                                <mi>f</mi>
+                                <mo>&rarr;</mo>
+                            </mover>
+                        </mrow>
+                    </mtd>
+                </mtr>
+                <mtr>
+                    <mtd>
+                        <mrow>
+                            <mo>&nabla;</mo>
+                            <mo>&middot;</mo>
+                            <mover>
+                                <mi>u</mi>
+                                <mo>&rarr;</mo>
+                            </mover>
+                            <mo>=</mo>
+                            <mn>0</mn>
+                        </mrow>
+                    </mtd>
+                </mtr>
+            </mtable>
+        </math>
+        <h3>Обозначения</h3>
+        <div>
+            <ul>
+                <li>
+                    <math><mi>&rho;</mi></math> &mdash; плотность жидкости
+                </li>
+                <li>
+                    <math>
+                        <mover>
+                            <mi>u</mi>
+                            <mo>&rarr;</mo>
+                        </mover>
+                    </math>
+                    &mdash; вектор скорости
+                </li>
+                <li>
+                    <math><mi>t</mi></math> &mdash; время
+                </li>
+                <li>
+                    <math><mi>&mu;</mi></math> &mdash; динамическая вязкость
+                </li>
+                <li>
+                    <math><mi>p</mi></math> &mdash; давление
+                </li>
+                <li>
+                    <math
+                        ><mover><mi>f</mi><mo>&rarr;</mo></mover></math
+                    >
+                    &mdash; вектор внешних сил
+                </li>
+                <li>
+                    <math><mo>&nabla;</mo></math> &mdash; оператор набла
+                </li>
+                <li>
+                    <math><mo>&Delta;</mo></math> &mdash; оператор Лапласа
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

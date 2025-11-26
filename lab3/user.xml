@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<book
+    xmlns="http://docbook.org/ns/docbook"
+    version="5.0"
+    xml:lang="ru"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+>
+  <title
+    >Руководство пользователя: Программный комплекс для моделирования аэродинамических течений</title>
+
+    <preface>
+      <title>Навигация</title>
+      <para role="html">Перейти к: <ulink
+                url="develop.html"
+            >Руководство разработчика (HTML)</ulink></para>
+      <para role="fo">Перейти к: <ulink
+                url="develop.pdf"
+            >Руководство разработчика (PDF)</ulink></para>
+    </preface>
+    <!-- <para><ulink url="https://google.com">google.com</ulink></para> -->
+
+    <xi:include href="info.xml" />
+    <xi:include href="chapters/intro.xml" />
+    <xi:include href="chapters/requirements.xml" />
+    <xi:include href="chapters/install.xml" />
+    <xi:include href="chapters/gui.xml" />
+    <xi:include href="chapters/table.xml" />
+
+  <chapter>
+    <title>Инструкция по использованию</title>
+
+    <section>
+      <title>Подготовка задачи в модуле ввода данных</title>
+      <orderedlist>
+        <listitem><para
+                    >Создайте геометрию с помощью примитивов (прямоугольник, эллипс, полигон) или параметрических кривых.</para></listitem>
+        <listitem><para
+                    >В разделе «Настройки материала» укажите плотность и вязкость среды (например, для воздуха: ρ = 1.204 кг/м<superscript
+                        >2</superscript>, μ = 1.81*10<superscript
+                        >-5</superscript> Па·с).</para></listitem>
+        <listitem><para
+                    >Выберите модель турбулентности: Laminar, k-ε или SST.</para></listitem>
+        <listitem><para
+                    >Задайте начальные условия (скорость, давление, турбулентные параметры при необходимости).</para></listitem>
+        <listitem><para
+                    >Назначьте граничные условия на контуры: inlet, wall (no slip/slip), open boundary.</para></listitem>
+        <listitem><para
+                    >Сгенерируйте конечно-элементную сетку, указав максимальный размер элемента.</para></listitem>
+        <listitem><para
+                    >Экспортируйте данные: геометрия и сетка сохраняются в формате <filename
+                        >.msh</filename>, параметры — в <filename
+                        >.json</filename>.</para></listitem>
+      </orderedlist>
+    </section>
+
+    <section>
+      <title>Выполнение расчётов</title>
+      <para
+            >Экспортированные файлы передаются в вычислительный модуль (например, COMSOL Multiphysics). В нём необходимо:</para>
+      <orderedlist>
+        <listitem><para>Импортировать сетку из файла <filename
+                        >.msh</filename>.</para></listitem>
+        <listitem><para
+                    >Вручную задать начальные и граничные условия (в соответствии с данными из <filename
+                        >.json</filename>).</para></listitem>
+        <listitem><para
+                    >Запустить расчёт и экспортировать результаты в текстовом формате (например, CSV или TXT) с полями: x, y, u, v, p, U (см. <xref
+                            linkend="table"
+                        />).</para></listitem>
+      </orderedlist>
+    </section>
+
+    <section>
+      <title>Визуализация результатов</title>
+      <orderedlist>
+        <listitem><para>Запустите модуль визуализации.</para></listitem>
+        <listitem><para
+                    >Нажмите «Выбрать файл с результатами» и укажите экспортированный файл.</para></listitem>
+        <listitem><para
+                    >Выберите тип графика: «Поле скоростей», «Поле давлений» или «Линии тока».</para></listitem>
+        <listitem><para
+                    >Укажите количество контуров (для контурных графиков).</para></listitem>
+        <listitem><para
+                    >Нажмите «Построить» — график отобразится в правой части окна.</para></listitem>
+        <listitem><para
+                    >График можно сохранить в форматах PNG, PDF или SVG через Matplotlib.</para></listitem>
+      </orderedlist>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Ограничения</title>
+    <para
+        >На текущем этапе вычислительный модуль не интегрирован напрямую: начальные и граничные условия необходимо задавать вручную в COMSOL Multiphysics. Автоматическая передача этих параметров не поддерживается.</para>
+    <para
+        >Геометрия ограничена двумерными примитивами и параметрическими кривыми.</para>
+  </chapter>
+</book>

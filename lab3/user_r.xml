@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+  <info>
+    <title
+        >Руководство пользователя: Программа для анализа структуры галактик</title>
+    <author>
+      <personname>Яваев Р.Р.</personname>
+    </author>
+    <releaseinfo>Версия 1.0</releaseinfo>
+  </info>
+
+  <chapter>
+    <title>Введение</title>
+    <para
+        >Данная программа предназначена для автоматизированного анализа изображений галактик с использованием моделей машинного обучения. Она позволяет определять морфологический класс галактики, оценивать количество спиральных рукавов и предсказывать угол их закрутки.</para>
+  </chapter>
+
+  <chapter>
+    <title>Системные требования</title>
+    <itemizedlist>
+      <listitem><para
+                >Операционная система: Windows, Linux или macOS</para></listitem>
+      <listitem><para>Python 3.8 или выше</para></listitem>
+      <listitem><para
+                >Зависимости: PyQt5, TensorFlow ≥ 2.0, Keras, OpenCV, pandas, xlwt</para></listitem>
+    </itemizedlist>
+  </chapter>
+
+  <chapter>
+    <title>Установка</title>
+    <orderedlist>
+      <listitem><para>Установите Python 3.8+.</para></listitem>
+      <listitem><para>Установите зависимости:</para>
+        <programlisting>pip install -r requirements.txt</programlisting>
+      </listitem>
+      <listitem><para>Запустите программу:</para>
+        <programlisting>python main.py</programlisting>
+      </listitem>
+    </orderedlist>
+  </chapter>
+
+  <chapter>
+    <title>Описание интерфейса</title>
+    <para>Интерфейс программы разделён на две области:</para>
+    <itemizedlist>
+      <listitem><para><emphasis
+                    >Левая панель</emphasis> — загрузка изображений и управление анализом.</para></listitem>
+      <listitem><para><emphasis
+                    >Правая панель</emphasis> — таблица результатов и экспорт данных.</para></listitem>
+    </itemizedlist>
+  </chapter>
+
+  <chapter>
+    <title>Инструкция по использованию</title>
+
+    <section>
+      <title>Анализ одного изображения</title>
+      <orderedlist>
+        <listitem><para
+                    >Нажмите «Выбрать изображения для анализа».</para></listitem>
+        <listitem><para>Выберите файл с расширением <filename
+                        >.png</filename> или <filename
+                        >.jpeg</filename>.</para></listitem>
+        <listitem><para
+                    >Нажмите «Выполнить анализ изображения».</para></listitem>
+        <listitem><para>Результат появится в таблице справа.</para></listitem>
+      </orderedlist>
+    </section>
+
+    <section>
+      <title>Анализ папки с изображениями</title>
+      <orderedlist>
+        <listitem><para
+                    >Нажмите «Выполнить анализ набора изображений».</para></listitem>
+        <listitem><para>Выберите папку с изображениями.</para></listitem>
+        <listitem><para
+                    >Программа обработает все подходящие файлы и добавит результаты в таблицу.</para></listitem>
+      </orderedlist>
+    </section>
+
+    <section>
+      <title>Экспорт результатов</title>
+      <para>Поддерживаются форматы CSV и XLS:</para>
+      <orderedlist>
+        <listitem><para
+                    >Нажмите «Экспортировать в CSV» или «Экспортировать в XLS».</para></listitem>
+        <listitem><para>Укажите путь и имя файла.</para></listitem>
+        <listitem><para
+                    >Файл будет сохранён с полной таблицей результатов.</para></listitem>
+      </orderedlist>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Настройки и справка</title>
+    <para
+        >В меню «Настройки» можно выбрать язык интерфейса: русский или английский.</para>
+    <para
+        >В меню «Справка» доступна информация о моделях: архитектура (MobileNet), количество параметров, назначение каждой модели.</para>
+  </chapter>
+
+  <chapter>
+    <title>Ограничения</title>
+    <para
+        >Модель определения угла закрутки обучена на синтетических данных и может давать погрешность до ±8° на реальных изображениях.</para>
+  </chapter>
+</book>

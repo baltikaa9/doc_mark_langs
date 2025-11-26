@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<book
+    xmlns="http://docbook.org/ns/docbook"
+    version="5.0"
+    xml:lang="ru"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+>
+  <title
+    >Руководство разработчика: Программный комплекс для моделирования аэродинамических течений</title>
+
+    <preface>
+      <title>Навигация</title>
+      <para role="html">Перейти к: <ulink
+                url="user.html"
+            >Руководство пользователя (HTML)</ulink></para>
+      <para role="fo">Перейти к: <ulink
+                url="user.pdf"
+            >Руководство пользователя (PDF)</ulink></para>
+    <para><ulink url="google.com">google.com</ulink></para>
+    </preface>
+
+    <xi:include href="info.xml" />
+    <xi:include href="chapters/intro.xml" />
+    <xi:include href="chapters/requirements.xml" />
+    <xi:include href="chapters/install.xml" />
+    <xi:include href="chapters/gui.xml" />
+    <xi:include href="chapters/table.xml" />
+
+    <chapter>
+
+        <title>Обзор архитектуры</title>
+
+        <para
+        >Программный комплекс реализован на языке Python и построен по модульному принципу. Он состоит из трёх независимых, но взаимодействующих модулей: <emphasis
+            >модуль ввода данных</emphasis>, <emphasis
+            >вычислительный модуль</emphasis> (внешний) и <emphasis
+            >модуль визуализации</emphasis>. Такая архитектура обеспечивает гибкость, упрощает тестирование и позволяет легко заменять или обновлять отдельные компоненты.</para>
+        <para
+        >Модули обмениваются данными через файлы в стандартизированных форматах: геометрия и сетка — в формате <filename
+            >.msh</filename> (Gmsh), параметры задачи — в <filename
+            >.json</filename>, результаты расчётов — в <filename
+            >.csv</filename> или <filename>.txt</filename>.</para>
+    </chapter>
+
+    <chapter>
+        <title>Структура компонентов</title>
+        <itemizedlist>
+        <listitem><para><emphasis
+                    >Модуль ввода данных</emphasis> — реализован на PySide6, содержит:
+            <itemizedlist>
+            <listitem
+                        >Дерево проекта для настройки материала, модели турбулентности, начальных и граничных условий</listitem>
+            <listitem
+                        >Рабочую зону для создания геометрии (примитивы, булевы операции)</listitem>
+            <listitem
+                        >Интеграцию с библиотекой Gmsh для генерации конечно-элементной сетки</listitem>
+            </itemizedlist>
+        </para></listitem>
+        <listitem><para><emphasis
+                    >Вычислительный модуль</emphasis> — внешняя система (например, COMSOL Multiphysics). Программный комплекс обеспечивает только экспорт данных для неё; интеграция на уровне API не реализована из-за ограничений стороннего ПО.</para></listitem>
+        <listitem><para><emphasis
+                    >Модуль визуализации</emphasis> — реализован на PySide6 с интеграцией Matplotlib для построения контурных карт, линий тока и одномерных графиков.</para></listitem>
+        <listitem><para><emphasis
+                    >Вспомогательные утилиты</emphasis> — парсинг CSV/JSON, работа с файловой системой.</para></listitem>
+        </itemizedlist>
+    </chapter>
+
+    <chapter>
+        <title>Классовая структура</title>
+
+        <section>
+        <title>Модуль ввода данных</title>
+        <itemizedlist>
+            <listitem><para><code
+                        >MainWindow</code> — основное окно приложения, управляет компоновкой и взаимодействием виджетов.</para></listitem>
+            <listitem><para><code
+                        >ProjectTreeWidget</code> — виджет дерева проекта. Хранит и отображает иерархию настроек: материал, модель турбулентности, начальные и граничные условия.</para></listitem>
+            <listitem><para><code>GeometryScene</code> и <code
+                        >GeometryView</code> — наследники <code
+                        >QGraphicsScene</code> и <code
+                        >QGraphicsView</code> для визуального редактирования геометрии.</para></listitem>
+            <listitem><para><code
+                        >MeshGenerator</code> — обёртка над Gmsh API для генерации сетки на основе построенной геометрии и привязанных физических групп (граничных условий).</para></listitem>
+        </itemizedlist>
+        </section>
+
+        <section>
+        <title>Модуль визуализации</title>
+        <itemizedlist>
+            <listitem><para><code
+                        >VisualizationWindow</code> — основное окно, содержит панель настроек и область графика.</para></listitem>
+            <listitem><para><code
+                        >DataParser</code> — использует библиотеку pandas для загрузки и структурирования данных из CSV/TXT файлов.</para></listitem>
+            <listitem><para><code
+                        >Plotter</code> — инкапсулирует логику построения графиков с помощью Matplotlib и их встраивания в интерфейс PySide6 через <code
+                        >FigureCanvasQTAgg</code>.</para></listitem>
+        </itemizedlist>
+        </section>
+    </chapter>
+
+    <chapter>
+        <title>Интеграция с внешними системами</title>
+
+        <section>
+        <title>Gmsh</title>
+        <para
+            >Библиотека Gmsh используется для генерации двумерной треугольной сетки. Интеграция осуществляется через официальный Python API. Перед использованием необходимо инициализировать Gmsh с помощью <code
+                >gmsh.initialize()</code>.</para>
+        <para
+            >Геометрические примитивы из рабочей зоны преобразуются в объекты Gmsh, а граничные условия привязываются к ним как физические группы.</para>
+        </section>
+
+        <section>
+        <title>Matplotlib и PySide6</title>
+        <para
+            >Для встраивания графиков Matplotlib в GUI используется виджет <code
+                >FigureCanvasQTAgg</code>. Это позволяет создавать интерактивные и статические графики, которые полностью интегрированы в оконную систему Qt.</para>
+        </section>
+    </chapter>
+
+    <chapter>
+        <title>Форматы обмена данными</title>
+
+        <section>
+        <title>Экспорт из модуля ввода данных</title>
+        <itemizedlist>
+            <listitem><para><filename
+                        >geometry.msh</filename> — файл сетки в формате Gmsh, содержащий геометрию, сетку и физические группы (метки для граничных условий).</para></listitem>
+            <listitem><para><filename
+                        >parameters.json</filename> — файл с параметрами задачи. Пример структуры:
+            <programlisting>{
+    "rho": 1.204,
+    "mu": 1.81e-5,
+    "turb_model": "SST",
+    "init_conditions": {"u": 0, "v": 0, "p": 0, "k": 4.2e-7, "omega": 2.78}
+    }</programlisting>
+            </para></listitem>
+        </itemizedlist>
+        </section>
+
+        <section>
+        <title>Импорт в модуль визуализации</title>
+        <para
+            >Модуль ожидает текстовый файл с разделителями (CSV/TXT), содержащий столбцы: <code
+                >x, y, u, v, p, U</code> (координаты, компоненты скорости, давление, модуль скорости). Используется библиотека pandas для парсинга.</para>
+        </section>
+    </chapter>
+
+    <chapter>
+        <title>Расширяемость</title>
+
+        <!-- <section>
+        <title>Добавление новой модели турбулентности</title>
+        <orderedlist>
+            <listitem><para
+                        >Добавьте новое значение в выпадающий список выбора модели в <code
+                            >ProjectTreeWidget</code>.</para></listitem>
+            <listitem><para
+                        >Расширьте логику валидации и отображения начальных/граничных условий для новой модели.</para></listitem>
+            <listitem><para>Обновите документацию и справку.</para></listitem>
+        </orderedlist>
+        </section> -->
+
+        <section>
+        <title>Поддержка нового формата экспорта результатов</title>
+        <orderedlist>
+            <listitem><para>Расширьте класс <code
+                        >DataParser</code>, добавив метод для чтения нового формата.</para></listitem>
+            <listitem><para
+                    >Добавьте опцию выбора формата в интерфейс модуля визуализации.</para></listitem>
+        </orderedlist>
+        </section>
+
+        <section>
+        <title>Интеграция с новым вычислительным модулем</title>
+        <para
+            >Для интеграции с новым вычислителем необходимо обеспечить совместимость форматов обмена данными. В идеале, новый модуль должен уметь импортировать <filename
+                >.msh</filename> и <filename
+                >.json</filename>. В противном случае потребуется реализовать конвертер.</para>
+        </section>
+    </chapter>
+
+  <!-- <chapter>
+    <title>Структура проекта</title>
+    <programlisting>
+/
+├── modules/
+│   ├── data/
+│   │   ├── src/
+│   │   │   ├── project_tree.py
+│   │   │   ├── geometry_scene.visualization.py
+│   │   │   └── mesh_generator.py
+│   │   └── main.py
+│   └── visualization/
+└── .python-version
+    </programlisting>
+  </chapter> -->
+</book>

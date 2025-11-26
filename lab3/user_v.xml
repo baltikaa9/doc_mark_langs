@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="ru">
+  <info>
+    <title>Руководство пользователя: Система антиплагиата «Textsource»</title>
+    <xi:include href="common/author.xml"/>
+    <xi:include href="common/releaseinfo.xml"/>
+  </info>
+
+  <preface>
+    <title>Навигация</title>
+    <para role="html">Перейти к: <ulink url="develop.html">Руководство разработчика (HTML)</ulink></para>
+    <para role="fo">Перейти к: <ulink url="develop.pdf">Руководство разработчика (PDF)</ulink></para>
+  </preface>
+
+  <xi:include href="common/intro.xml"/>
+
+  <chapter>
+    <title>Начало работы</title>
+    <para>Для начала работы с системой необходимо зарегистрироваться или войти в существующую учетную запись. Интерфейс представляет собой одностраничное веб-приложение (SPA), доступное через браузер.</para>
+  </chapter>
+
+  <chapter>
+    <title>Описание интерфейса</title>
+    <para>Основной интерфейс системы состоит из нескольких разделов:</para>
+    <itemizedlist>
+      <listitem><para><emphasis>Панель управления:</emphasis> основной экран для загрузки документов и запуска проверки.</para></listitem>
+      <listitem><para><emphasis>История проверок:</emphasis> список всех загруженных вами документов, их статус (в обработке, завершено) и результаты.</para></listitem>
+      <listitem><para><emphasis>Настройки:</emphasis> раздел для управления данными вашей учетной записи.</para></listitem>
+    </itemizedlist>
+  </chapter>
+
+  <chapter>
+    <title>Инструкция по использованию</title>
+
+    <section>
+      <title>Проверка документа на плагиат</title>
+      <orderedlist>
+        <listitem><para>Перейдите в раздел «Панель управления».</para></listitem>
+        <listitem><para>Вы можете вставить текст напрямую в текстовое поле или загрузить файл.</para></listitem>
+        <listitem><para>Поддерживаемые форматы файлов: <filename>.docx</filename>, <filename>.pdf</filename>, <filename>.txt</filename>.</para></listitem>
+        <listitem><para>Нажмите кнопку «Проверить на плагиат».</para></listitem>
+        <listitem><para>Проверка будет запущена в фоновом режиме. Вы можете отслеживать ее статус в разделе «История проверок».</para></listitem>
+      </orderedlist>
+    </section>
+
+    <section>
+      <title>Просмотр отчета</title>
+      <orderedlist>
+        <listitem><para>После завершения проверки в «Истории проверок» статус документа изменится на «Завершено».</para></listitem>
+        <listitem><para>Нажмите на завершенную проверку, чтобы открыть детальный отчет.</para></listitem>
+        <listitem><para>Отчет включает:</para>
+          <itemizedlist>
+            <listitem><para>Итоговый процент оригинальности.</para></listitem>
+            <listitem><para>Визуальное выделение в тексте фрагментов, идентифицированных как заимствованные.</para></listitem>
+            <listitem><para>Ссылки на обнаруженные первоисточники.</para></listitem>
+            <listitem><para>Оценку вероятности генерации текста искусственным интеллектом.</para></listitem>
+          </itemizedlist>
+        </listitem>
+      </orderedlist>
+    </section>
+  </chapter>
+  
+  <chapter>
+    <title>Целевая аудитория</title>
+    <para>Система «Textsource» ориентирована на широкий круг пользователей:</para>
+    <itemizedlist>
+        <listitem><para><emphasis>Образовательные учреждения:</emphasis> для проверки студенческих работ (курсовых, дипломных).</para></listitem>
+        <listitem><para><emphasis>Научные и издательские организации:</emphasis> для проверки статей и публикаций перед выпуском.</para></listitem>
+        <listitem><para><emphasis>Индивидуальные пользователи:</emphasis> студенты, аспиранты, авторы контента для проверки собственных работ.</para></listitem>
+        <listitem><para><emphasis>Коммерческие организации:</emphasis> маркетинговые агентства, SEO-компании для проверки уникальности контента.</para></listitem>
+    </itemizedlist>
+  </chapter>
+
+</book>

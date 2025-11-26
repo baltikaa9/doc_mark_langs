@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="ru">
+  <title>Пример Dok</title>
+  <chapter>
+    <title>Введение</title>
+    <para>Это пример документа, написанного в DocBook 5.</para>
+  </chapter>
+  <chapter>
+    <title>Код</title>
+    <para>Ниже — пример кода:</para>
+    <programlisting language="python">
+print("Hello, DocBook!")
+    </programlisting>
+  </chapter>
+</book>

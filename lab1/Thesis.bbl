@@ -1,0 +1,306 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{lam_flow}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=c37055a920694d88388f7c1dd7b30154}{%
+           family={Лойцянский},
+           familyi={Л\bibinitperiod},
+           given={Л.\bibnamedelimi Г.},
+           giveni={Л\bibinitperiod\bibinitdelim Г\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Москва}%
+      }
+      \list{publisher}{1}{%
+        {Дрофа}%
+      }
+      \strng{namehash}{c37055a920694d88388f7c1dd7b30154}
+      \strng{fullhash}{c37055a920694d88388f7c1dd7b30154}
+      \strng{fullhashraw}{c37055a920694d88388f7c1dd7b30154}
+      \strng{bibnamehash}{c37055a920694d88388f7c1dd7b30154}
+      \strng{authorbibnamehash}{c37055a920694d88388f7c1dd7b30154}
+      \strng{authornamehash}{c37055a920694d88388f7c1dd7b30154}
+      \strng{authorfullhash}{c37055a920694d88388f7c1dd7b30154}
+      \strng{authorfullhashraw}{c37055a920694d88388f7c1dd7b30154}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{pagetotal}{840}
+      \field{title}{Механика жидкости и газа — 7-е изд.}
+      \field{year}{2003}
+    \endentry
+    \entry{turb_reasons}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=0117b75cfa2c0bf9c9f770aee4854af9}{%
+           family={Shahzad},
+           familyi={S\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=55d786b72c4800fee7e77c11d08a9116}{%
+           family={Hamdani},
+           familyi={H\bibinitperiod},
+           given={H.R.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=a5b90704f2855e4b0aea25f017e9ed01}{%
+           family={Mumtaz},
+           familyi={M\bibinitperiod},
+           given={M.N.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{1a8f1e40c8320ff43f244c3f54f548a5}
+      \strng{fullhash}{1a8f1e40c8320ff43f244c3f54f548a5}
+      \strng{fullhashraw}{1a8f1e40c8320ff43f244c3f54f548a5}
+      \strng{bibnamehash}{1a8f1e40c8320ff43f244c3f54f548a5}
+      \strng{authorbibnamehash}{1a8f1e40c8320ff43f244c3f54f548a5}
+      \strng{authornamehash}{1a8f1e40c8320ff43f244c3f54f548a5}
+      \strng{authorfullhash}{1a8f1e40c8320ff43f244c3f54f548a5}
+      \strng{authorfullhashraw}{1a8f1e40c8320ff43f244c3f54f548a5}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of 2013 10th International Bhurban Conference on Applied Sciences \& Technology (IBCAST)}
+      \field{langid}{english}
+      \field{title}{Effect of Reynolds number on leading edge vortex for a wing in unsteady motion}
+      \field{year}{2013}
+      \field{pages}{181\bibrangedash 188}
+      \range{pages}{8}
+      \keyw{Lead;Aerodynamics;Force;Atmospheric modeling;Computational modeling;Equations;Mathematical model;Delayed stall;leading edge vortex;unsteady motion;corrugated wing}
+    \endentry
+    \entry{re_crit}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=6b35d01f4f2a6a97193147126335db17}{%
+           family={Shams},
+           familyi={S\bibinitperiod},
+           given={Taimur\bibnamedelima Ali},
+           giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=55351e8f9dd37506dd3ab784f29a3309}{%
+           family={Ali\bibnamedelima Shah},
+           familyi={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={Sved\bibnamedelima Irtiza},
+           giveni={S\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=0c0f36c0af0a6ae412a44f5fcbc33f2b}{%
+           family={Ahmad},
+           familyi={A\bibinitperiod},
+           given={Muhammad\bibnamedelima Avaz},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{1c8b1e013ec4ad70081a54b1aa485c1e}
+      \strng{fullhash}{1c8b1e013ec4ad70081a54b1aa485c1e}
+      \strng{fullhashraw}{1c8b1e013ec4ad70081a54b1aa485c1e}
+      \strng{bibnamehash}{1c8b1e013ec4ad70081a54b1aa485c1e}
+      \strng{authorbibnamehash}{1c8b1e013ec4ad70081a54b1aa485c1e}
+      \strng{authornamehash}{1c8b1e013ec4ad70081a54b1aa485c1e}
+      \strng{authorfullhash}{1c8b1e013ec4ad70081a54b1aa485c1e}
+      \strng{authorfullhashraw}{1c8b1e013ec4ad70081a54b1aa485c1e}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2018 IEEE 21st International Multi-Topic Conference (INMIC)}
+      \field{langid}{english}
+      \field{title}{Study of Low Reynolds Number Aerodynamics for Low Aspect Ratio MAV Wing}
+      \field{year}{2018}
+      \field{pages}{1\bibrangedash 8}
+      \range{pages}{8}
+    \endentry
+    \entry{re_crit_gadetskiy}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=5b2072d0abeb107da13ce14be1847975}{%
+           family={Гадецкий},
+           familyi={Г\bibinitperiod},
+           given={В.\bibnamedelimi М.},
+           giveni={В\bibinitperiod\bibinitdelim М\bibinitperiod}}}%
+      }
+      \strng{namehash}{5b2072d0abeb107da13ce14be1847975}
+      \strng{fullhash}{5b2072d0abeb107da13ce14be1847975}
+      \strng{fullhashraw}{5b2072d0abeb107da13ce14be1847975}
+      \strng{bibnamehash}{5b2072d0abeb107da13ce14be1847975}
+      \strng{authorbibnamehash}{5b2072d0abeb107da13ce14be1847975}
+      \strng{authornamehash}{5b2072d0abeb107da13ce14be1847975}
+      \strng{authorfullhash}{5b2072d0abeb107da13ce14be1847975}
+      \strng{authorfullhashraw}{5b2072d0abeb107da13ce14be1847975}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{19}
+      \field{journaltitle}{Ученые записки ЦАГИ}
+      \field{langid}{russian}
+      \field{title}{Экспериментальное исследование влияния числа Рейнольдса на обтекание стреловидного крыла при околозвуковых скоростях}
+      \field{year}{1988}
+      \field{number}{1}
+      \range{number}{1}
+      \field{pages}{45\bibrangedash 51}
+      \range{pages}{7}
+      \field{volume}{19}
+      \range{volume}{1}
+    \endentry
+    \entry{uravnenie-nerazryvnosti}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=7d812f4308dcbbc4be0e9fed7e7ec3e2}{%
+           family={Толпаев},
+           familyi={Т\bibinitperiod},
+           given={В.\bibnamedelimi А.},
+           giveni={В\bibinitperiod\bibinitdelim А\bibinitperiod}}}%
+        {{hash=87da9f21eda73f2ad0bd68e3536f6e03}{%
+           family={Палиев},
+           familyi={П\bibinitperiod},
+           given={В.\bibnamedelimi В.},
+           giveni={В\bibinitperiod\bibinitdelim В\bibinitperiod}}}%
+      }
+      \strng{namehash}{7a9f61bdb0f834c064c69325063c42f5}
+      \strng{fullhash}{7a9f61bdb0f834c064c69325063c42f5}
+      \strng{fullhashraw}{7a9f61bdb0f834c064c69325063c42f5}
+      \strng{bibnamehash}{7a9f61bdb0f834c064c69325063c42f5}
+      \strng{authorbibnamehash}{7a9f61bdb0f834c064c69325063c42f5}
+      \strng{authornamehash}{7a9f61bdb0f834c064c69325063c42f5}
+      \strng{authorfullhash}{7a9f61bdb0f834c064c69325063c42f5}
+      \strng{authorfullhashraw}{7a9f61bdb0f834c064c69325063c42f5}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{7}
+      \field{journaltitle}{Известия Саратовского университета. Новая серия. Серия Математика. Механика. Информатика}
+      \field{langid}{russian}
+      \field{title}{Уравнение неразрывности в двумерных моделях фильтрации жидкости и газа в искривленных пластах конечной толщины}
+      \field{year}{2007}
+      \field{number}{2}
+      \range{number}{1}
+      \field{pages}{49\bibrangedash 53}
+      \range{pages}{5}
+      \field{volume}{7}
+      \range{volume}{1}
+    \endentry
+    \entry{pres}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=428b6346fff381def972a626bd65ae9d}{%
+           family={Gregory},
+           familyi={G\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=2da06c0c378fa0574ffa3aa3b944596f}{%
+           family={O'Reilly},
+           familyi={O\bibinitperiod},
+           given={C.\bibnamedelimi L.},
+           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {R. \& M. No. 3726}%
+      }
+      \strng{namehash}{a195bc973ed905ec640f3f455496be70}
+      \strng{fullhash}{a195bc973ed905ec640f3f455496be70}
+      \strng{fullhashraw}{a195bc973ed905ec640f3f455496be70}
+      \strng{bibnamehash}{a195bc973ed905ec640f3f455496be70}
+      \strng{authorbibnamehash}{a195bc973ed905ec640f3f455496be70}
+      \strng{authornamehash}{a195bc973ed905ec640f3f455496be70}
+      \strng{authorfullhash}{a195bc973ed905ec640f3f455496be70}
+      \strng{authorfullhashraw}{a195bc973ed905ec640f3f455496be70}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{pagetotal}{35}
+      \field{title}{Low-speed aerodynamic characteristics of NACA 0012 aerofoil section, including the effects of upper-surface roughness simulating hoar frost}
+      \field{year}{1973}
+    \endentry
+    \entry{en_book}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=57d5460feef651e0511cad25207f396b}{%
+           family={Susskind},
+           familyi={S\bibinitperiod},
+           given={Leonard},
+           giveni={L\bibinitperiod}}}%
+        {{hash=27825b20ad5451e20bdb3b0f0c83d7f1}{%
+           family={Hrabovsky},
+           familyi={H\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY}%
+      }
+      \list{publisher}{1}{%
+        {Penguin Random House}%
+      }
+      \strng{namehash}{361f8c37d0f2ba44734bd54e477c4129}
+      \strng{fullhash}{361f8c37d0f2ba44734bd54e477c4129}
+      \strng{fullhashraw}{361f8c37d0f2ba44734bd54e477c4129}
+      \strng{bibnamehash}{361f8c37d0f2ba44734bd54e477c4129}
+      \strng{authorbibnamehash}{361f8c37d0f2ba44734bd54e477c4129}
+      \strng{authornamehash}{361f8c37d0f2ba44734bd54e477c4129}
+      \strng{authorfullhash}{361f8c37d0f2ba44734bd54e477c4129}
+      \strng{authorfullhashraw}{361f8c37d0f2ba44734bd54e477c4129}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{pagetotal}{42}
+      \field{title}{Classical mechanics: the theoretical minimum}
+      \field{year}{2014}
+    \endentry
+    \entry{aero}{online}{}{}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{Аэродинамика}
+      \field{urlday}{6}
+      \field{urlmonth}{10}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.krugosvet.ru/enc/nauka_i_tehnika/fizika/AERODINAMIKA.html
+      \endverb
+      \verb{url}
+      \verb https://www.krugosvet.ru/enc/nauka_i_tehnika/fizika/AERODINAMIKA.html
+      \endverb
+    \endentry
+    \entry{bernuli_and_newton}{online}{}{}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{Bernoulli and Newton}
+      \field{urlday}{6}
+      \field{urlmonth}{10}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bernoulli-and-newton/
+      \endverb
+      \verb{url}
+      \verb https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bernoulli-and-newton/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

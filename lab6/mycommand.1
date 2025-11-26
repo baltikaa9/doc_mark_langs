@@ -1,0 +1,33 @@
+.Dd Ноябрь 12, 2025    \" Date
+.Dt MYCOMMAND 1        \" Name and section
+.Os Linux              
+
+.Sh НАЗВАНИЕ           \" Section
+.Nm mycommand          \" Имя команды
+.Nd Краткое описание утилиты.
+
+.Sh СИНТАКСИС
+.Nm mycommand
+.Op Fl v               \" Op - необязят-ный арг-т, Fl - флаг
+.Op Fl n Ar число      \" Ar - аргумент
+.Ar файл
+
+.Sh ОПИСАНИЕ
+.Nm mycommand
+делает что-то полезное
+.Bl -tag -width Ds    \" Begin list
+.It Fl v              \" Item
+Вывод версии.
+.It Fl n Ar число
+Указать число (аргумент).
+.El                   \" End list
+
+.Sh ПРИМЕРЫ
+Примеры использования:
+.Dl mycommand -n 5 file.txt    \" пример команды в строке.
+
+.Sh СМОТРИТЕ ТАКЖЕ
+.Xr ls 1 ,                     \" ссылка на другую man-страницу.
+.Xr grep 1
+
+

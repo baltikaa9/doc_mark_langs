@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="ru">
+  <info>
+    <title>Руководство разработчика: Система антиплагиата «Textsource»</title>
+    <xi:include href="common/author.xml"/>
+    <xi:include href="common/releaseinfo.xml"/>
+  </info>
+
+  <preface>
+    <title>Навигация</title>
+    <para role="html">Перейти к: <ulink url="user.html">Руководство пользователя (HTML)</ulink></para>
+    <para role="fo">Перейти к: <ulink url="user.pdf">Руководство пользователя (PDF)</ulink></para>
+  </preface>
+
+  <xi:include href="common/intro.xml"/>
+
+  <chapter>
+    <title>Обзор архитектуры</title>
+    <para>Система «Textsource» спроектирована с использованием сервис-ориентированного подхода (SOA), что обеспечивает модульность и гибкость. Архитектура разделена на несколько ключевых компонентов, взаимодействующих асинхронно.</para>
+    <para>Основные компоненты:</para>
+    <itemizedlist>
+      <listitem><para><emphasis>Основной бэкенд-сервис:</emphasis> центральный компонент, управляющий пользовательскими запросами и бизнес-логикой.</para></listitem>
+      <listitem><para><emphasis>Ядро антиплагиата:</emphasis> выполняет сложные операции по анализу текста, включая обнаружение заимствований и генерации ИИ-текстов.</para></listitem>
+      <listitem><para><emphasis>Система обмена сообщениями:</emphasis> обеспечивает асинхронное взаимодействие между бэкендом и ядром.</para></listitem>
+      <listitem><para><emphasis>Система хранения данных:</emphasis> включает реляционные и векторные базы данных для хранения метаданных и текстовых представлений.</para></listitem>
+    </itemizedlist>
+  </chapter>
+
+  <chapter>
+    <title>Технологический стек</title>
+    <itemizedlist>
+      <listitem><para><emphasis>Основной бэкенд-сервис:</emphasis> Java и Spring Boot.</para></listitem>
+      <listitem><para><emphasis>Ядро антиплагиата:</emphasis> Python с использованием библиотек для NLP (NLTK).</para></listitem>
+      <listitem><para><emphasis>Аутентификация и авторизация:</emphasis> Keycloak (поддерживает OAuth 2.0 и OpenID Connect).</para></listitem>
+      <listitem><para><emphasis>Брокер сообщений:</emphasis> Apache Kafka для асинхронной обработки задач.</para></listitem>
+      <listitem><para><emphasis>Хранение метаданных:</emphasis> PostgreSQL.</para></listitem>
+      <listitem><para><emphasis>Векторная база данных:</emphasis> Qdrant для семантического поиска.</para></listitem>
+      <listitem><para><emphasis>Пользовательский интерфейс:</emphasis> React (Single Page Application).</para></listitem>
+    </itemizedlist>
+  </chapter>
+
+  <chapter>
+    <title>Структура компонентов</title>
+
+    <section>
+      <title>Основной бэкенд-сервис (Java/Spring Boot)</title>
+      <para>Реализован с использованием многослойной архитектуры:</para>
+      <itemizedlist>
+        <listitem><para><emphasis>Слой контроллеров:</emphasis> обрабатывает HTTP-запросы от клиентского приложения (REST API).</para></listitem>
+        <listitem><para><emphasis>Сервисный слой:</emphasis> инкапсулирует бизнес-логику, управляет пользователями, документами и процессом проверки.</para></listitem>
+        <listitem><para><emphasis>Слой доступа к данным:</emphasis> реализован с использованием Spring Data JPA для взаимодействия с PostgreSQL.</para></listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Ядро антиплагиата (Python)</title>
+      <para>Ядро реализует гибридный алгоритм обнаружения плагиата и состоит из двух основных подсистем:</para>
+      <itemizedlist>
+        <listitem><para><emphasis>Подсистема координации:</emphasis> управляет процессом анализа, получает задачи из Kafka и объединяет результаты.</para></listitem>
+        <listitem><para><emphasis>Подсистема предобработки и извлечения признаков (NLP):</emphasis> выполняет очистку текста, токенизацию, лемматизацию и векторизацию с использованием модели RuBert-tiny2.</para></listitem>
+      </itemizedlist>
+    </section>
+    
+    <section>
+      <title>Процесс проверки текста</title>
+      <orderedlist>
+        <listitem><para>Пользователь загружает документ через веб-интерфейс.</para></listitem>
+        <listitem><para>Бэкенд-сервис получает файл, сохраняет его и создает задачу на проверку, отправляя сообщение в топик Kafka.</para></listitem>
+        <listitem><para>Ядро антиплагиата (consumer) забирает задачу из Kafka.</para></listitem>
+        <listitem><para><emphasis>Этап 1: Быстрая проверка.</emphasis> Ядро использует фильтр Блума для быстрой проверки на дословные заимствования.</para></listitem>
+        <listitem><para><emphasis>Этап 2: Семантический анализ.</emphasis> Если необходимо, текст векторизуется, и выполняется поиск семантически близких фрагментов в базе данных Qdrant.</para></listitem>
+        <listitem><para><emphasis>Этап 3: Детекция ИИ-текста.</emphasis> Проводится эвристический анализ для оценки вероятности генерации текста искусственным интеллектом.</para></listitem>
+        <listitem><para>Результаты всех этапов агрегируются и отправляются в другой топик Kafka.</para></listitem>
+        <listitem><para>Бэкенд-сервис получает результаты и сохраняет их в PostgreSQL.</para></listitem>
+      </orderedlist>
+    </section>
+
+  </chapter>
+
+  <chapter>
+    <title>Развертывание и тестирование</title>
+    <section>
+      <title>Развертывание</title>
+      <para>На текущем этапе развертывание выполняется в ручном режиме. Главный бэкенд собирается в JAR-архив, а ядро антиплагиата упаковывается в Docker-образ. Конфигурация передается через переменные окружения. В будущем планируется переход на Docker для всех компонентов и использование Kubernetes для автоматизации.</para>
+    </section>
+    <section>
+      <title>Тестирование</title>
+      <para>Система покрыта модульными тестами (pytest для ядра) и нагрузочными тестами (Apache JMeter). Проводилось функциональное и качественное тестирование алгоритмов с использованием метрики средней абсолютной ошибки (MAE).</para>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Планируемое развитие</title>
+    <para>Планируется переход к микросервисной архитектуре ядра. Модуль координации будет реализован на Kotlin (Ktor), а NLP-модуль останется на Python в виде специализированного сервиса. Это позволит независимо масштабировать и обновлять компоненты.</para>
+  </chapter>
+
+  <chapter>
+    <title>Визуализация процесса и данные</title>
+
+    <section>
+      <title>Диаграмма процесса обработки</title>
+      <figure xml:id="fig-process">
+        <title>Процесс обработки документа</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/image1.png" format="PNG" contentwidth="14cm" scalefit="1"/>
+          </imageobject>
+          <textobject>
+            <phrase>Процесс обработки документа</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+    </section>
+
+    <section>
+      <title>Пример таблицы</title>
+      <table>
+        <title>Метрики обработки</title>
+        <?dbfo table-layout="fixed"?>
+        <tgroup cols="2">
+          <colspec colnum="1" colwidth="5cm"/>
+          <colspec colnum="2" colwidth="10cm"/>
+          <thead>
+            <row>
+              <entry>Метрика</entry>
+              <entry>Значение</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Среднее время проверки</entry>
+              <entry>12 с</entry>
+            </row>
+            <row>
+              <entry>Максимальная длина документа</entry>
+              <entry>200 страниц</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+  </chapter>
+</book>

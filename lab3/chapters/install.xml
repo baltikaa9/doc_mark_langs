@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<chapter xmlns="http://docbook.org/ns/docbook">
+<title>Установка и запуск</title>
+<orderedlist>
+    <listitem><para>Установите пакетный менеджер uv.</para></listitem>
+    <listitem><para>Запустите модуль ввода данных:</para>
+    <programlisting>uv run modules/data/main.py</programlisting>
+    </listitem>
+    <listitem><para>Для визуализации результатов запустите:</para>
+    <programlisting>uv run modules/visualization/main.py</programlisting>
+    </listitem>
+</orderedlist>
+</chapter>

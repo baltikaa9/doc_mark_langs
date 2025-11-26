@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Уравнение теплопроводности</title>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+h1 { border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+h2 { margin-top: 30px; border-left: 4px solid #3498db; padding-left: 10px; }
+h3 { margin-top: 20px; }
+ul { padding: 20px 40px; border-radius: 8px; border: 1px solid #3498db; }
+li { margin: 10px 0; }
+p { margin: 10px 0; font-style: italic; }
+math { font-size: 1.1em; }
+.formula-block { padding: 20px; margin: 20px 0; border-radius: 8px; border: 2px solid #3498db; }
+</style>
+</head>
+<body>
+<h1>Уравнение теплопроводности</h1>
+
+<h2>Общее уравнение теплопроводности</h2>
+<div class="formula-block">
+<math display="block">
+<mrow>
+<mi>ρ</mi><mi>c</mi>
+<mfrac><mrow><mo>∂</mo><mi>T</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac>
+<mo>=</mo><mo>∇</mo><mo>·</mo>
+<mfenced><mrow><mi>k</mi><mo>∇</mo><mi>T</mi></mrow></mfenced>
+<mo>+</mo><mi>Q</mi>
+</mrow>
+</math>
+</div>
+
+<h3>Обозначения</h3>
+<ul>
+<li><math><mi>T</mi></math> — температура (K или °C)</li>
+<li><math><mi>t</mi></math> — время (с)</li>
+<li><math><mi>ρ</mi></math> — плотность материала (кг/м³)</li>
+<li><math><mi>c</mi></math> — удельная теплоёмкость (Дж/(кг·K))</li>
+<li><math><mi>k</mi></math> — коэффициент теплопроводности (Вт/(м·K))</li>
+<li><math><mi>Q</mi></math> — объёмная плотность источников тепла (Вт/м³)</li>
+<li><math><mo>∇</mo></math> — оператор набла (градиент)</li>
+</ul>
+
+<h2>Одномерное уравнение теплопроводности</h2>
+<div class="formula-block">
+<math display="block">
+<mrow>
+<mfrac><mrow><mo>∂</mo><mi>T</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac>
+<mo>=</mo><mi>α</mi>
+<mfrac><mrow><msup><mo>∂</mo><mn>2</mn></msup><mi>T</mi></mrow><mrow><mo>∂</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac>
+</mrow>
+</math>
+</div>
+
+<h3>Где</h3>
+<ul>
+<li><math><mi>α</mi><mo>=</mo><mfrac><mi>k</mi><mrow><mi>ρ</mi><mi>c</mi></mrow></mfrac></math> — коэффициент температуропроводности (м²/с)</li>
+</ul>
+
+<h2>Трёхмерное уравнение теплопроводности</h2>
+<div class="formula-block">
+<math display="block">
+<mrow>
+<mfrac><mrow><mo>∂</mo><mi>T</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac>
+<mo>=</mo><mi>α</mi>
+<mfenced>
+<mrow>
+<mfrac><mrow><msup><mo>∂</mo><mn>2</mn></msup><mi>T</mi></mrow><mrow><mo>∂</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac>
+<mo>+</mo>
+<mfrac><mrow><msup><mo>∂</mo><mn>2</mn></msup><mi>T</mi></mrow><mrow><mo>∂</mo><msup><mi>y</mi><mn>2</mn></msup></mrow></mfrac>
+<mo>+</mo>
+<mfrac><mrow><msup><mo>∂</mo><mn>2</mn></msup><mi>T</mi></mrow><mrow><mo>∂</mo><msup><mi>z</mi><mn>2</mn></msup></mrow></mfrac>
+</mrow>
+</mfenced>
+<mo>=</mo><mi>α</mi><mo>Δ</mo><mi>T</mi>
+</mrow>
+</math>
+</div>
+
+<h3>Обозначения</h3>
+<ul>
+<li><math><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></math> — пространственные координаты</li>
+<li><math><mo>Δ</mo></math> — оператор Лапласа</li>
+</ul>
+
+<h2>Граничные условия</h2>
+
+<h3>1. Условие Дирихле (первого рода)</h3>
+<div class="formula-block">
+<math display="block">
+<mrow>
+<msub><mi>T</mi><mrow><mo>∂</mo><mi>Ω</mi></mrow></msub>
+<mo>=</mo>
+<msub><mi>T</mi><mn>0</mn></msub>
+</mrow>
+</math>
+</div>
+<p>Задана температура на границе</p>
+
+<h3>2. Условие Неймана (второго рода)</h3>
+<div class="formula-block">
+<math display="block">
+<mrow>
+<mo>−</mo><mi>k</mi>
+<msub>
+<mfenced><mfrac><mrow><mo>∂</mo><mi>T</mi></mrow><mrow><mo>∂</mo><mi>n</mi></mrow></mfrac></mfenced>
+<mrow><mo>∂</mo><mi>Ω</mi></mrow>
+</msub>
+<mo>=</mo><mi>q</mi>
+</mrow>
+</math>
+</div>
+<p>Задан тепловой поток на границе</p>
+
+<h3>3. Условие Робина (третьего рода)</h3>
+<div class="formula-block">
+<math display="block">
+<mrow>
+<mo>−</mo><mi>k</mi>
+<msub>
+<mfenced><mfrac><mrow><mo>∂</mo><mi>T</mi></mrow><mrow><mo>∂</mo><mi>n</mi></mrow></mfrac></mfenced>
+<mrow><mo>∂</mo><mi>Ω</mi></mrow>
+</msub>
+<mo>=</mo><mi>h</mi>
+<mfenced><mrow><mi>T</mi><mo>−</mo><msub><mi>T</mi><mi>∞</mi></msub></mrow></mfenced>
+</mrow>
+</math>
+</div>
+<p>Конвективный теплообмен на границе</p>
+
+<h3>Обозначения для граничных условий</h3>
+<ul>
+<li><math><mo>∂</mo><mi>Ω</mi></math> — граница области</li>
+<li><math><mi>n</mi></math> — внешняя нормаль к границе</li>
+<li><math><mi>q</mi></math> — заданный тепловой поток (Вт/м²)</li>
+<li><math><mi>h</mi></math> — коэффициент теплоотдачи (Вт/(м²·K))</li>
+<li><math><msub><mi>T</mi><mi>∞</mi></msub></math> — температура окружающей среды</li>
+<li><math><msub><mi>T</mi><mn>0</mn></msub></math> — заданная температура на границе</li>
+</ul>
+
+<h2>Стационарное уравнение теплопроводности (уравнение Пуассона)</h2>
+<div class="formula-block">
+<math display="block">
+<mrow>
+<mo>−</mo><mo>∇</mo><mo>·</mo>
+<mfenced><mrow><mi>k</mi><mo>∇</mo><mi>T</mi></mrow></mfenced>
+<mo>=</mo><mi>Q</mi>
+</mrow>
+</math>
+</div>
+<p>При отсутствии зависимости от времени (∂T/∂t = 0)</p>
+
+<h3>Частный случай (уравнение Лапласа)</h3>
+<div class="formula-block">
+<math display="block">
+<mrow>
+<mo>Δ</mo><mi>T</mi><mo>=</mo><mn>0</mn>
+</mrow>
+</math>
+</div>
+<p>Без источников тепла (Q = 0) и при постоянной теплопроводности</p>
+
+</body>
+</html>

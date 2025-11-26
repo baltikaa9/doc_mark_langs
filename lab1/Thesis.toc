@@ -1,0 +1,10 @@
+\babel@toc {russian}{}\relax 
+\contentsline {chapter}{\cyrillictext \CYRS \cyrp \cyri \cyrs \cyro \cyrk \ \cyri \cyrl \cyrl \cyryu \cyrs \cyrt \cyrr \cyra \cyrt \cyri \cyrv \cyrn \cyro \cyrg \cyro \ \cyrm \cyra \cyrt \cyre \cyrr \cyri \cyra \cyrl \cyra }{3}{chapter*.2}%
+\contentsline {chapter}{{\cyrillictext \CYRS \cyrp \cyri \cyrs \cyro \cyrk \ \cyrt \cyra \cyrb \cyrl \cyri \cyrc }}{4}{chapter*.3}%
+\contentsline {chapter}{\cyrillictext \CYRV \cyrv \cyre \cyrd \cyre \cyrn \cyri \cyre }{5}{chapter*.4}%
+\contentsline {chapter}{\chaptername ~1.\hskip 1em Теоретические основы моделирования аэродинамических течений}{7}{chapter.1}%
+\contentsline {section}{\numberline {1.1\hskip 1em}Основные понятия ламинарных и турбулентных течений}{7}{section.1.1}%
+\contentsline {section}{\numberline {1.2\hskip 1em}Число Рейнольдса как характеристика отношения инерционных и вязких сил}{9}{section.1.2}%
+\contentsline {section}{\numberline {1.3\hskip 1em}Основные законы аэродинамики и их применение}{9}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1\hskip 1em}Закон сохранения массы "--- уравнение неразрывности}{9}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2\hskip 1em}Закон сохранения энергии "--- уравнение Бернулли}{11}{subsection.1.3.2}%
