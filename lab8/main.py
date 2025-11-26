@@ -10,7 +10,7 @@ def write():
     # Создаем матрицу с big-endian порядком байтов
     matrix_big_endian = matrix.astype('>f8')  # >f8 = big-endian float64
 
-    with h5py.File('test.h5', 'w') as f:
+    with h5py.File('lab8/test.h5', 'w') as f:
         matrix_group = f.create_group('matrix_group')
 
         matrix_group.create_dataset('matrix', data=matrix)
@@ -43,7 +43,7 @@ def write():
         image.attrs['description'] = 'Тестовая картинка с градиентом'
 
 def read():
-    with h5py.File('test.h5', 'r') as f:
+    with h5py.File('lab8/test.h5', 'r') as f:
         print(f'Ключи в корне: {list(f.keys())}')
         print()
 
